@@ -1,0 +1,30 @@
+---
+type Props = {
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+  label?: string;
+  class?: string;
+};
+
+const {
+  href,
+  variant = 'primary',
+  type = 'button',
+  disabled = false,
+  label = '',
+  class: className = '',
+} = Astro.props as Props;
+
+const classList = `btn ${variant === 'primary' ? 'btn-primary' : 'btn-secondary'} ${className}`.trim();
+---
+{href ? (
+  <a href={href} class={classList} aria-disabled={disabled ? 'true' : undefined}>
+    {label ? label : <slot />}
+  </a>
+) : (
+  <button type={type} class={classList} disabled={disabled}>
+    {label ? label : <slot />}
+  </button>
+)}

@@ -1,0 +1,18 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Card from '@/components/ui/Card.astro';
+import { HeroVariant } from './HeroVariant';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-01" class="hero">
+  <Container>
+    <div class="grid grid-cols-2" style="align-items:start">
+      <HeroVariant client:load ctaMain={landingContent.ctaMain} microtrustLine={landingContent.microtrustLine} />
+      <Card>
+        <h2 class="h3">Реальный формат занятия</h2>
+        <p class="muted">TODO video asset: фрагмент реального урока BLK-01.</p>
+      </Card>
+    </div>
+  </Container>
+</Section>

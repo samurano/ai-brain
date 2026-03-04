@@ -1,0 +1,7 @@
+---
+const { as = 'p', class: className = '' } = Astro.props;
+const Tag = as;
+---
+<Tag class={className}>
+  <slot />
+</Tag>

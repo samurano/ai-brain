@@ -1,0 +1,11 @@
+---
+import FooterContact from '@/components/ui/FooterContact.astro';
+import { landingContent } from '@/content/landing';
+---
+<FooterContact
+  trustLine={landingContent.footer.trustLine}
+  address={landingContent.footer.address}
+  metro={landingContent.footer.metro}
+  telegram={landingContent.footer.telegram}
+  phone={landingContent.footer.phone}
+/>

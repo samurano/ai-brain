@@ -1,0 +1,18 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-07">
+  <Container>
+    <div class="surface" style="padding:1.25rem">
+      <h2 class="h2">{landingContent.sections.blk07.title}</h2>
+      <ul class="list-clean grid" style="margin-top:0.75rem">
+        {landingContent.sections.blk07.points.map((point) => (
+          <li class="card">{point}</li>
+        ))}
+      </ul>
+      <a href="#blk-08" class="btn btn-secondary" style="margin-top:0.75rem">Посмотреть, как это выглядит вживую</a>
+    </div>
+  </Container>
+</Section>

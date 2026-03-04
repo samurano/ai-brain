@@ -1,0 +1,15 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import PriceEntry from '@/components/ui/PriceEntry.astro';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-06">
+  <Container>
+    <div class="surface" style="padding:1.25rem">
+      <h2 class="h2">{landingContent.sections.blk06.title}</h2>
+      <PriceEntry text={landingContent.sections.blk06.text} />
+      <a href="#lead-form" class="btn btn-primary" style="margin-top:0.75rem">Записаться на пробное</a>
+    </div>
+  </Container>
+</Section>

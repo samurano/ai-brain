@@ -1,0 +1,37 @@
+@theme {
+  --color-bg: #0b121a;
+  --color-surface: #111c28;
+  --color-surface-strong: #152433;
+  --color-text: #e8f0f8;
+  --color-text-muted: #a9bacd;
+  --color-primary: #2ec5ff;
+  --color-primary-strong: #22a7db;
+  --color-accent: #ff5c8d;
+  --color-border: #264055;
+
+  --font-heading: "Manrope", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 9999px;
+
+  --shadow-soft: 0 8px 24px rgb(0 0 0 / 0.18);
+  --shadow-strong: 0 16px 40px rgb(0 0 0 / 0.28);
+
+  --motion-fast: 160ms;
+  --motion-base: 240ms;
+
+  --container-max: 1120px;
+}

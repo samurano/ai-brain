@@ -1,0 +1,8 @@
+---
+type Props = {
+  href?: string;
+};
+
+const { href = '/privacy/' } = Astro.props as Props;
+---
+<a href={href}>Политика обработки персональных данных</a>

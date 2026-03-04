@@ -1,0 +1,18 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import ScheduleSlot from '@/components/ui/ScheduleSlot.astro';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-05">
+  <Container>
+    <div class="surface" style="padding:1.25rem">
+      <h2 class="h2">{landingContent.sections.blk05.title}</h2>
+      <ul class="list-clean grid" style="margin-top:0.75rem">
+        {landingContent.sections.blk05.dates.map((date) => <ScheduleSlot date={date} />)}
+      </ul>
+      <p class="muted" style="margin-top:0.75rem">Постоянное расписание новичковой группы: {landingContent.sections.blk05.schedule}</p>
+      <a href="#lead-form" class="btn btn-primary">Забронировать ближайшую дату</a>
+    </div>
+  </Container>
+</Section>

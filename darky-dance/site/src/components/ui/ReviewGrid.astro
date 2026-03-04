@@ -1,0 +1,12 @@
+---
+import ReviewCard from './ReviewCard.astro';
+
+type Props = {
+  reviews: string[];
+};
+
+const { reviews } = Astro.props as Props;
+---
+<div class="grid">
+  {reviews.map((review) => <ReviewCard text={review} />)}
+</div>

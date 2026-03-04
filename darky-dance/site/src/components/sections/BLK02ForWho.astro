@@ -1,0 +1,15 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-02">
+  <Container>
+    <div class="surface" style="padding:1.25rem">
+      <h2 class="h2">{landingContent.sections.blk02.title}</h2>
+      <p class="muted">{landingContent.sections.blk02.lead}</p>
+      <p class="muted">{landingContent.sections.blk02.body}</p>
+      <a href="#blk-04" class="btn btn-secondary">Показать, как проходит первое занятие</a>
+    </div>
+  </Container>
+</Section>

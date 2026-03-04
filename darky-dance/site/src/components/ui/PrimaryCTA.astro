@@ -1,0 +1,10 @@
+---
+type Props = {
+  href: string;
+  label: string;
+  id?: string;
+};
+
+const { href, label, id = '' } = Astro.props as Props;
+---
+<a class="btn btn-primary js-main-cta" href={href} id={id}>{label}</a>

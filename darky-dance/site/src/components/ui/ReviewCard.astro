@@ -1,0 +1,8 @@
+---
+type Props = {
+  text: string;
+};
+
+const { text } = Astro.props as Props;
+---
+<article class="card">{text}</article>

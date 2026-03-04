@@ -1,0 +1,22 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-03">
+  <Container>
+    <div class="surface" style="padding:1.25rem">
+      <h2 class="h2">{landingContent.sections.blk03.title}</h2>
+      <p class="muted">{landingContent.sections.blk03.lead}</p>
+      <ul class="list-clean grid" style="margin-top:0.75rem">
+        {landingContent.sections.blk03.items.map(([question, answer]) => (
+          <li class="card">
+            <strong>{question}</strong>
+            <p class="muted" style="margin:0.5rem 0 0">{answer}</p>
+          </li>
+        ))}
+      </ul>
+      <a href="#lead-form" class="btn btn-primary" style="margin-top:0.75rem">Записаться на пробное и начать спокойно</a>
+    </div>
+  </Container>
+</Section>

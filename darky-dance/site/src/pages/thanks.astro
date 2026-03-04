@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import TelegramFallback from '@/components/ui/TelegramFallback.astro';
+import { PageTracker } from '@/components/ui/PageTracker';
+import { TelegramClickTracker } from '@/components/ui/TelegramClickTracker';
+import { getRuntimeConfig } from '@/lib/runtime-config';
+
+const cfg = getRuntimeConfig();
+---
+<BaseLayout title="Спасибо! Заявка принята — D’Arky Dance" description="Мы получили вашу заявку и свяжемся в рабочее время.">
+  <PageTracker client:load eventName="lp_thanks_view" />
+  <TelegramClickTracker client:load source="thanks" />
+  <Section>
+    <Container>
+      <div class="surface" style="padding:1.5rem; max-width:740px; margin-inline:auto">
+        <h1 class="h1">Спасибо, заявка принята</h1>
+        <p class="muted" style="margin-top:0.75rem">
+          Мы свяжемся с вами в рабочее время, чтобы подтвердить дату пробного занятия.
+        </p>
+        <p class="muted">Если хотите ускорить контакт, напишите нам в Telegram.</p>
+        <TelegramFallback username={cfg.telegramUsername} text="Telegram" />
+        <a href="/" class="btn btn-secondary" style="margin-top:1rem">Вернуться на лендинг</a>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

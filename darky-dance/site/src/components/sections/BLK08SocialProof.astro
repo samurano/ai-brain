@@ -1,0 +1,23 @@
+---
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import VideoEmbed from '@/components/ui/VideoEmbed.astro';
+import ReviewGrid from '@/components/ui/ReviewGrid.astro';
+import { landingContent } from '@/content/landing';
+---
+<Section id="blk-08">
+  <Container>
+    <div class="surface" style="padding:1.25rem">
+      <h2 class="h2">{landingContent.sections.blk08.title}</h2>
+      <div class="grid grid-cols-2" style="margin-top:0.75rem">
+        {landingContent.sections.blk08.media.map((media, index) => (
+          <VideoEmbed title={`Видео ${index + 1}`} placeholder={media} />
+        ))}
+      </div>
+      <div style="margin-top:0.75rem">
+        <ReviewGrid reviews={landingContent.sections.blk08.reviews.map((review) => `TODO review asset: ${review}`)} />
+      </div>
+      <a href="#lead-form" class="btn btn-primary" style="margin-top:0.75rem">Хочу на такое же пробное</a>
+    </div>
+  </Container>
+</Section>

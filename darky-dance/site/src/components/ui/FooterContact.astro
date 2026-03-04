@@ -1,0 +1,23 @@
+---
+import PolicyLink from './PolicyLink.astro';
+
+type Props = {
+  trustLine: string;
+  address: string;
+  metro: string;
+  telegram: string;
+  phone: string;
+};
+
+const { trustLine, address, metro, telegram, phone } = Astro.props as Props;
+---
+<footer class="section">
+  <div class="container surface" style="padding:1.25rem">
+    <p>{trustLine}</p>
+    <p class="muted">Адрес: {address}</p>
+    <p class="muted">Метро: {metro}</p>
+    <p class="muted">Telegram: {telegram}</p>
+    <p class="muted">Телефон: {phone}</p>
+    <p class="muted" style="margin-bottom:0"><PolicyLink /></p>
+  </div>
+</footer>

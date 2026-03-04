@@ -1,0 +1,12 @@
+---
+type Props = {
+  username: string;
+  text?: string;
+};
+
+const { username, text = 'Если удобнее, напишите сразу в Telegram' } = Astro.props as Props;
+const clean = username.replace('@', '');
+---
+<p class="muted" style="margin:0.75rem 0 0">
+  {text}: <a class="js-telegram-link" href={`https://t.me/${clean}`} target="_blank" rel="noreferrer">@{clean}</a>
+</p>

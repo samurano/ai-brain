@@ -1,0 +1,12 @@
+---
+type Props = {
+  title: string;
+  placeholder: string;
+};
+
+const { title, placeholder } = Astro.props as Props;
+---
+<article class="card">
+  <h3 class="h3">{title}</h3>
+  <p class="muted" style="margin-top:0.5rem">TODO media asset: {placeholder}</p>
+</article>

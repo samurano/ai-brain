@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BLK01Hero from '@/components/sections/BLK01Hero.astro';
+import BLK02ForWho from '@/components/sections/BLK02ForWho.astro';
+import BLK03Barriers from '@/components/sections/BLK03Barriers.astro';
+import BLK04HowTrial from '@/components/sections/BLK04HowTrial.astro';
+import BLK05Schedule from '@/components/sections/BLK05Schedule.astro';
+import BLK06Price from '@/components/sections/BLK06Price.astro';
+import BLK07WhyDarky from '@/components/sections/BLK07WhyDarky.astro';
+import BLK08SocialProof from '@/components/sections/BLK08SocialProof.astro';
+import BLK09LeadSection from '@/components/sections/BLK09LeadSection.astro';
+import BLK10Footer from '@/components/sections/BLK10Footer.astro';
+import StickyMobileCTA from '@/components/ui/StickyMobileCTA.astro';
+import { PageTracker } from '@/components/ui/PageTracker';
+import { TelegramClickTracker } from '@/components/ui/TelegramClickTracker';
+import { landingContent } from '@/content/landing';
+---
+<BaseLayout
+  title="Парная бачата с нуля в Новосибирске — D’Arky Dance"
+  description="Комфортный старт с нуля: без пары, без стресса. Пробное 800 ₽ / 400 ₽ при предоплате."
+>
+  <PageTracker client:load eventName="lp_view" />
+  <TelegramClickTracker client:load source="page_link" />
+
+  <main>
+    <BLK01Hero />
+    <BLK02ForWho />
+    <BLK03Barriers />
+    <BLK04HowTrial />
+    <BLK05Schedule />
+    <BLK06Price />
+    <BLK07WhyDarky />
+    <BLK08SocialProof />
+    <BLK09LeadSection />
+    <BLK10Footer />
+  </main>
+
+  <StickyMobileCTA href="#lead-form" label={landingContent.ctaMain} />
+</BaseLayout>
