@@ -18,30 +18,38 @@ export function HeroVariant({ ctaMain, microtrustLine }: Props) {
   const content = useMemo(() => heroByVariant[variant], [variant]);
 
   return (
-    <div className="surface" style={{ padding: '1.5rem' }}>
-      <span className="eyebrow">Пробное 800 ₽ / 400 ₽ при предоплате</span>
-      <h1 className="h1" style={{ marginTop: '1rem' }}>
+    <div className="hero-content">
+      <span className="hero-source-badge">D’Arky Dance • Новосибирск</span>
+      <h1 className="h1 hero-title" style={{ marginTop: '1rem' }}>
         {content.h1}
       </h1>
-      <p className="muted" style={{ marginTop: '0.75rem' }}>
+      <p className="hero-subhead muted" style={{ marginTop: '0.75rem' }}>
         {content.subhead}
       </p>
-      <ul className="list-clean" style={{ marginTop: '1rem', display: 'grid', gap: '0.5rem' }}>
+      <ul className="hero-bullets" style={{ marginTop: '1rem' }}>
         {content.bullets.map((item) => (
-          <li key={item} className="card">
+          <li key={item}>
             {item}
           </li>
         ))}
       </ul>
-      <a
-        href="#lead-form"
-        className="btn btn-primary js-main-cta"
-        style={{ marginTop: '1rem' }}
-        onClick={() => track('lp_hero_cta_click')}
-      >
-        {ctaMain}
-      </a>
-      <p className="muted" style={{ marginTop: '0.75rem', marginBottom: 0 }}>
+
+      <div className="hero-actions">
+        <a
+          href="#lead-form"
+          className="btn btn-primary hero-main-cta js-main-cta"
+          onClick={() => track('lp_hero_cta_click', { source: 'hero' })}
+        >
+          {ctaMain}
+        </a>
+      </div>
+
+      <div className="hero-chip-row">
+        <span className="hero-chip">Без опыта</span>
+        <span className="hero-chip">Первый шаг без стресса</span>
+      </div>
+
+      <p className="hero-microtrust muted" style={{ marginTop: '0.65rem', marginBottom: 0 }}>
         {microtrustLine}
       </p>
     </div>

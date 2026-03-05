@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import clsx from 'clsx';
 import { getUTMParams } from '@/lib/utm';
 import { resolveLandingVariant } from '@/lib/variant';
 import { leadSchema } from '@/lib/lead-schema';
@@ -26,8 +27,24 @@ const initialState: FormState = {
   consent_personal_data: false,
 };
 
-export function LeadForm() {
-  const telegramUsername = getRuntimeConfig().telegramUsername;
+type LeadFormMode = 'full' | 'compact';
+
+type Props = {
+  mode?: LeadFormMode;
+  formId?: string;
+  source?: 'hero' | 'section';
+  className?: string;
+};
+
+export function LeadForm({
+  mode = 'full',
+  formId = 'lead-form',
+  source = 'section',
+  className,
+}: Props) {
+  const telegramUsername = getRuntimeConfig().telegramUsername.replace('@', '');
+  const isCompact = mode === 'compact';
+
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; text: string }>({
@@ -57,13 +74,13 @@ export function LeadForm() {
   function handleStart() {
     if (!started) {
       setStarted(true);
-      track('lp_form_start');
+      track('lp_form_start', { source, mode });
     }
   }
 
   async function handleSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
-    track('lp_form_submit');
+    track('lp_form_submit', { source, mode });
     setErrors({});
     setStatus({ type: 'idle', text: '' });
 
@@ -75,8 +92,8 @@ export function LeadForm() {
         phone: fieldErrors.phone?.[0] ?? '',
         consent_personal_data: fieldErrors.consent_personal_data?.[0] ?? 'Нужно согласие',
       });
-      setStatus({ type: 'error', text: 'Проверьте поля формы.' });
-      track('lp_form_error', { reason: 'validation' });
+      setStatus({ type: 'error', text: isCompact ? 'Проверьте поля.' : 'Проверьте поля формы.' });
+      track('lp_form_error', { source, mode, reason: 'validation' });
       return;
     }
 
@@ -97,7 +114,7 @@ export function LeadForm() {
 
       const response = await submitLead(payload);
       setStatus({ type: 'success', text: 'Заявка принята. Перенаправляем…' });
-      track('lp_form_success', { lead_id: response.lead_id });
+      track('lp_form_success', { source, mode, lead_id: response.lead_id });
 
       const params = new URLSearchParams({
         lead_id: response.lead_id,
@@ -107,25 +124,51 @@ export function LeadForm() {
       window.location.assign(`/thanks/?${params.toString()}`);
     } catch (error) {
       setStatus({ type: 'error', text: 'Не удалось отправить заявку. Попробуйте ещё раз.' });
-      track('lp_form_error', { reason: 'submit_exception', message: String(error) });
+      track('lp_form_error', { source, mode, reason: 'submit_exception', message: String(error) });
     } finally {
       setLoading(false);
     }
   }
 
+  const heading = isCompact ? 'Оставьте контакты' : 'Запишитесь на пробное и получите ближайший слот';
+  const subhead = isCompact
+    ? ''
+    : 'Оставьте контакты, и мы свяжемся с вами в рабочее время, чтобы подтвердить удобную дату.';
+  const nameLabel = isCompact ? 'Имя' : 'Ваше имя';
+  const telegramLabel = 'Telegram (необязательно)';
+  const consentLabel = isCompact ? (
+    <>
+      Согласен(а) на обработку персональных данных и принимаю <a href="/privacy/">политику ПД</a>.
+    </>
+  ) : (
+    <>
+      Нажимая кнопку, вы соглашаетесь на обработку персональных данных и принимаете{' '}
+      <a href="/privacy/">политику ПД</a>.
+    </>
+  );
+  const fallbackText = isCompact ? 'Или сразу в Telegram' : 'Если удобнее, напишите сразу в Telegram';
+
   return (
-    <form id="lead-form" className="surface" style={{ padding: '1.25rem', display: 'grid', gap: '0.9rem' }} onSubmit={handleSubmit} onFocus={handleStart}>
-      <h2 className="h2" style={{ marginBottom: 0 }}>
-        Запишитесь на пробное и получите ближайший слот
+    <form
+      id={formId}
+      className={clsx('lead-form surface', isCompact ? 'lead-form--compact' : 'lead-form--full', className)}
+      onSubmit={handleSubmit}
+      onFocus={handleStart}
+    >
+      <h2 className={clsx(isCompact ? 'h3' : 'h2', 'lead-form__title')} style={{ marginBottom: 0 }}>
+        {heading}
       </h2>
-      <p className="muted" style={{ margin: 0 }}>
-        Оставьте контакты, и мы свяжемся с вами в рабочее время, чтобы подтвердить удобную дату.
-      </p>
+
+      {subhead ? (
+        <p className="muted lead-form__subhead" style={{ margin: 0 }}>
+          {subhead}
+        </p>
+      ) : null}
 
       <TextField
-        id="name"
+        id={`${formId}-name`}
         name="name"
-        label="Ваше имя"
+        label={nameLabel}
         value={form.name}
         onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
         error={errors.name}
@@ -134,31 +177,28 @@ export function LeadForm() {
       />
 
       <PhoneField
+        id={`${formId}-phone`}
+        name="phone"
         value={form.phone}
         onChange={(phone) => setForm((prev) => ({ ...prev, phone }))}
         error={errors.phone}
       />
 
       <TextField
-        id="telegram"
+        id={`${formId}-telegram`}
         name="telegram"
-        label="Telegram (необязательно)"
+        label={telegramLabel}
         value={form.telegram}
         onChange={(event) => setForm((prev) => ({ ...prev, telegram: event.target.value }))}
         autoComplete="off"
       />
 
       <CheckboxField
-        id="consent_personal_data"
+        id={`${formId}-consent_personal_data`}
         name="consent_personal_data"
         checked={form.consent_personal_data}
         onChange={(event) => setForm((prev) => ({ ...prev, consent_personal_data: event.target.checked }))}
-        label={
-          <>
-            Нажимая кнопку, вы соглашаетесь на обработку персональных данных и принимаете{' '}
-            <a href="/privacy/">политику ПД</a>.
-          </>
-        }
+        label={consentLabel}
         error={errors.consent_personal_data}
       />
 
@@ -172,21 +212,43 @@ export function LeadForm() {
       <SubmitButton label="Записаться на пробное" loading={loading} />
       <FormMessage type={status.type} text={status.text} />
 
-      <p className="muted" style={{ margin: 0 }}>
-        Если удобнее, напишите сразу в Telegram:{' '}
-        <a
-          className="js-telegram-link"
-          href={`https://t.me/${telegramUsername.replace('@', '')}`}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => track('lp_telegram_click', { source: 'form' })}
-        >
-          @{telegramUsername.replace('@', '')}
-        </a>
-      </p>
-      <p className="muted" style={{ margin: 0 }}>
-        Обычно отвечаем в рабочее время до 30 минут.
-      </p>
+      {isCompact ? (
+        <>
+          <p className="muted lead-form__meta" style={{ margin: 0 }}>
+            Свяжемся и подберём ближайшую дату.
+          </p>
+          <p className="muted lead-form__meta" style={{ margin: 0 }}>
+            {fallbackText}:{' '}
+            <a
+              className="js-telegram-link"
+              href={`https://t.me/${telegramUsername}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => track('lp_telegram_click', { source: 'hero_form' })}
+            >
+              @{telegramUsername}
+            </a>
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="muted lead-form__meta" style={{ margin: 0 }}>
+            {fallbackText}:{' '}
+            <a
+              className="js-telegram-link"
+              href={`https://t.me/${telegramUsername}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => track('lp_telegram_click', { source: 'section_form' })}
+            >
+              @{telegramUsername}
+            </a>
+          </p>
+          <p className="muted lead-form__meta" style={{ margin: 0 }}>
+            Обычно отвечаем в рабочее время до 30 минут.
+          </p>
+        </>
+      )}
     </form>
   );
 }

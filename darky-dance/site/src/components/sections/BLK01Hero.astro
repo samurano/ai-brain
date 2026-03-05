@@ -1,18 +1,33 @@
 ---
 import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
-import Card from '@/components/ui/Card.astro';
 import { HeroVariant } from './HeroVariant';
+import { LeadForm } from './LeadForm';
 import { landingContent } from '@/content/landing';
 ---
-<Section id="blk-01" class="hero">
+<Section id="blk-01" class="hero-section">
   <Container>
-    <div class="grid grid-cols-2" style="align-items:start">
-      <HeroVariant client:load ctaMain={landingContent.ctaMain} microtrustLine={landingContent.microtrustLine} />
-      <Card>
-        <h2 class="h3">Реальный формат занятия</h2>
-        <p class="muted">TODO video asset: фрагмент реального урока BLK-01.</p>
-      </Card>
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <img class="hero-logo" src="/brand/logo-darky.png" alt="Логотип D’Arky Dance" width="512" height="362" loading="eager" decoding="async" />
+        <HeroVariant client:load ctaMain={landingContent.ctaMain} microtrustLine={landingContent.microtrustLine} />
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <img
+          src="/hero/hero-couple.jpg"
+          alt=""
+          width="1366"
+          height="768"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div class="hero-form-wrap">
+        <LeadForm client:load mode="compact" formId="lead-form" source="hero" />
+      </div>
     </div>
   </Container>
 </Section>

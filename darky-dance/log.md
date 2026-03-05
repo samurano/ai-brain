@@ -360,3 +360,64 @@
 - Для новых запусков в VK Ads зафиксирован единый короткий формат именования campaign/adset/ad.
 - Стандарт одновременно удобен для ручного чтения в кабинете и для аналитического парсинга через маркеры `[Axx]` и `[Cxx]`.
 - Правило внесено в рабочие документы блока `marketing/vk-ads` и в инструкции для следующих чатов.
+
+## 2026-03-05 (VK Ads: политика хранения выгрузок обновлена)
+- Для блока `marketing/vk-ads` закреплён дефолт: raw-выгрузки в `data/` удаляются после успешной загрузки в таблицу.
+- `data/` используется как временный буфер импорта, а не архив.
+- В `.gitignore` добавлена защита, чтобы выгрузки из `data/` не попадали в репозиторий.
+
+## 2026-03-05 (AGENTS Harness v2 внедрён)
+
+### Task ID
+- HARNESS-2026-03-05-01
+
+### Что сделано
+- Обновлён корневой `AGENTS.md` (добавлен блок `AGENTS Harness v2`):
+  - non-mutating/mutating до `GO`,
+  - контракт `Task ID` для `research/plan/log`,
+  - политика приоритета локальных AGENTS,
+  - политика канон/производные,
+  - команды harness и monthly maintenance cadence.
+- Обновлён `darky-dance/smm/AGENTS.md` под v2-инварианты с локальным override.
+- Добавлены служебные docs:
+  - `agent-harness/README.md`
+  - `agent-harness/checklist.md`
+  - `agent-harness/changelog.md`
+- Добавлены скрипты:
+  - `scripts/harness_sync_agents.py`
+  - `scripts/harness_check.py`
+- Добавлен optional pre-commit hook: `.githooks/pre-commit`.
+- Добавлен `Makefile` с командами:
+  - `harness-check-fast`, `harness-check-strict`,
+  - `harness-sync-check`, `harness-sync-write`,
+  - `harness-hook-install`, `harness-hook-uninstall`.
+- Синхронизированы производные `.claude/worktrees/*/AGENTS.md` через script API.
+
+### Что проверить
+1. `python3 scripts/harness_sync_agents.py --check` возвращает OK.
+2. `python3 scripts/harness_check.py --mode fast` возвращает OK.
+3. `python3 scripts/harness_check.py --mode strict` возвращает OK.
+4. `make harness-hook-install` включает optional hook без принудительности для всех.
+
+## 2026-03-05 (расширение AGENTS Harness v2 на fitness-проекты)
+
+### Task ID
+- HARNESS-2026-03-05-02
+
+### Что сделано
+- Rollout AGENTS Harness v2 расширен на:
+  - `fitness-online` (новый локальный `AGENTS.md`),
+  - `fitness-online-landing` (новые `AGENTS.md` и `docs/agent-checklist.md` в nested repo).
+- Стабилизированы формулировки корневого harness:
+  - единый маркер `[РЕШЕНИЕ ТРЕБУЕТСЯ]`,
+  - уточнена связка `Task ID` между `research/plan/log`.
+- Обновлены harness-артефакты:
+  - `agent-harness/README.md` (карта локальных AGENTS),
+  - `agent-harness/changelog.md` (запись rollout),
+  - `scripts/harness_check.py` (обязательная проверка `fitness-online/AGENTS.md`, warn-only для nested AGENTS),
+  - `Makefile` (цель `harness-check-project-agents`).
+
+### Что проверить
+1. `make harness-check-project-agents` — OK.
+2. `make harness-sync-check` — OK.
+3. `make harness-check-fast` и `make harness-check-strict` — OK.
