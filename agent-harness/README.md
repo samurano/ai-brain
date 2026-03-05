@@ -1,10 +1,10 @@
-# AGENTS Harness v2
+# AGENTS/CLAUDE Harness v2
 
 ## Зачем
-`AGENTS Harness v2` — это процессный слой для стабильной работы с агентами в `ai-brain`.
+`AGENTS/CLAUDE Harness v2` — процессный слой для стабильной работы с агентами в `ai-brain`.
 
 Цель: сократить ошибки процесса за счёт комбинации:
-- явных правил в `AGENTS.md`,
+- явных правил в `AGENTS.md` и `CLAUDE.md`,
 - machine-checkable проверок,
 - синхронизации производных AGENTS,
 - регулярного мини-аудита.
@@ -16,31 +16,44 @@
 - `agent-harness/changelog.md`
 
 2. `scripts`:
-- `scripts/harness_check.py` — валидация process-инвариантов.
+- `scripts/harness_check.py` — валидация process-инвариантов AGENTS + CLAUDE.
 - `scripts/harness_sync_agents.py` — синхронизация производных `.claude/worktrees/*/AGENTS.md`.
 
 3. `optional hook`:
 - `.githooks/pre-commit` — opt-in запуск строгой проверки и проверки синхронизации.
 
 ## Канон/производные
-- Канон:
+- Канон AGENTS:
   - `AGENTS.md`
-  - проектные `AGENTS.md` (например, `darky-dance/smm/AGENTS.md`)
+  - проектные `AGENTS.md`
+- Канон CLAUDE:
+  - `CLAUDE.md`
+  - проектные `CLAUDE.md`
 - Производные:
   - `.claude/worktrees/*/AGENTS.md`
 
-Производные AGENTS не редактируются вручную.
+Политика sync на этом этапе только для AGENTS (AGENTS-only).
+`CLAUDE.md` проверяются как канонический набор, без derived-sync.
 
-## Карта локальных AGENTS
-- `AGENTS.md` — глобальный стандарт для всего `ai-brain`.
-- `darky-dance/smm/AGENTS.md` — локальный override для SMM-задач D'Arky.
-- `fitness-online/AGENTS.md` — локальный override для продуктовых/контентных задач фитнес-запуска.
-- `fitness-online/landing/AGENTS.md` — локальный override для кодового контура лендинга внутри `fitness-online`.
+## Карта локальных AGENTS и CLAUDE
+- Root:
+  - `AGENTS.md`
+  - `CLAUDE.md`
 
-`fitness-online/landing` проверяется по локальному process-checklist:
-- `fitness-online/landing/docs/agent-checklist.md`
+- `darky-dance/smm`:
+  - `darky-dance/smm/AGENTS.md`
+  - `darky-dance/smm/CLAUDE.md`
 
-Лендинг работает в едином git-контуре `ai-brain` (без отдельного nested repo).
+- `fitness-online`:
+  - `fitness-online/AGENTS.md`
+  - `fitness-online/CLAUDE.md`
+
+- `fitness-online/landing`:
+  - `fitness-online/landing/AGENTS.md`
+  - `fitness-online/landing/CLAUDE.md`
+  - `fitness-online/landing/docs/agent-checklist.md`
+
+Лендинг работает в едином git-контуре `ai-brain`.
 
 ## Команды
 - Быстрая проверка:
@@ -64,6 +77,7 @@ python3 scripts/harness_sync_agents.py --write
 ```bash
 make harness-check-fast
 make harness-check-strict
+make harness-check-claude
 make harness-check-project-agents
 make harness-sync-check
 make harness-sync-write
