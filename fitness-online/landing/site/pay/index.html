@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оплата 10-дневной программы «Плоский живот»</title>
+    <meta
+      name="description"
+      content="Оплата полной программы «Плоский живот»: 10 уроков, 2 эфира и поддержка в чате."
+    />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Оплата программы «Плоский живот» — 10 уроков + 2 эфира" />
+    <meta property="og:description" content="10 уроков в записи, 2 живых эфира и поддержка в чате. Цена от 1 990 ₽." />
+    <meta property="og:url" content="https://samurano.github.io/fitness-online-landing/pay/" />
+    <!-- TODO: заменить на реальное изображение 1200x630 перед запуском трафика -->
+    <meta property="og:image" content="https://samurano.github.io/fitness-online-landing/assets/og-image.jpg" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body class="with-sticky">
+    <header class="site-head" id="site-head">
+      <div class="container site-head__inner">
+        <a class="brand" href="../">умный живот</a>
+        <a class="top-link js-support-link" href="https://t.me/ira_deni" target="_blank" rel="noreferrer"
+          >Поддержка</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section class="section hero" style="min-height: auto; padding-top: 96px; padding-bottom: 96px">
+        <div class="container text-center" style="display: grid; gap: 24px">
+          <span class="badge" style="justify-self: center">Старт программы: 19 марта 2026</span>
+          <h1>Вы попробовали первые 2 дня. Впереди — главные изменения</h1>
+          <p class="muted">
+            Полная программа: 10 уроков в записи, 2 живых эфира с Ириной и поддержка в чате.
+          </p>
+
+          <div>
+            <p class="kicker">Текущая цена</p>
+            <div class="price-main" data-current-price>—</div>
+            <p class="muted js-price-stage">Текущая волна: —</p>
+          </div>
+
+          <div class="timer-box js-countdown" aria-live="polite">
+            <p class="timer-caption">До повышения цены</p>
+            <div class="timer">
+              <div class="timer-item">
+                <span class="timer-value" data-unit="days">00</span>
+                <span class="timer-label">дн</span>
+              </div>
+              <span class="timer-sep">:</span>
+              <div class="timer-item">
+                <span class="timer-value" data-unit="hours">00</span>
+                <span class="timer-label">ч</span>
+              </div>
+              <span class="timer-sep">:</span>
+              <div class="timer-item">
+                <span class="timer-value" data-unit="minutes">00</span>
+                <span class="timer-label">мин</span>
+              </div>
+              <span class="timer-sep">:</span>
+              <div class="timer-item">
+                <span class="timer-value timer-seconds" data-unit="seconds">00</span>
+                <span class="timer-label">сек</span>
+              </div>
+            </div>
+            <p class="timer-note js-sales-note">Следующее переключение: —</p>
+          </div>
+
+          <div id="pay-error" class="notice" hidden></div>
+
+          <div class="row" style="justify-content: center">
+            <a class="btn btn-primary js-pay-scroll js-pay-label" href="#pay-form-section">Оплатить доступ</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt reveal">
+        <div class="container">
+          <header class="section-header" data-stagger>
+            <h2>Что вы получаете</h2>
+          </header>
+
+          <div class="grid include-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))">
+            <article class="card" data-stagger>
+              <div class="icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="24" cy="24" r="18" />
+                  <path d="m20 16 14 8-14 8z" />
+                </svg>
+              </div>
+              <h3>10 уроков в записи</h3>
+              <p class="muted">По 15-20 минут в удобное время.</p>
+            </article>
+
+            <article class="card" data-stagger>
+              <div class="icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="10" y="14" width="22" height="16" rx="4" />
+                  <path d="m32 19 8-5v16l-8-5" />
+                  <circle cx="9" cy="9" r="3" />
+                  <path d="M15 9h7" />
+                </svg>
+              </div>
+              <h3>2 живых эфира</h3>
+              <p class="muted">После 5-го и 10-го урока: разбор техники и ответы.</p>
+            </article>
+
+            <article class="card" data-stagger>
+              <div class="icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 11h28a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H24l-8 6v-6h-6a4 4 0 0 1-4-4V15a4 4 0 0 1 4-4Z" />
+                  <circle cx="18" cy="22" r="1" />
+                  <circle cx="24" cy="22" r="1" />
+                  <circle cx="30" cy="22" r="1" />
+                </svg>
+              </div>
+              <h3>Поддержка в чате</h3>
+              <p class="muted">Check-in, мотивация и помощь по ходу потока.</p>
+            </article>
+
+            <article class="card" data-stagger>
+              <div class="icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="24" cy="24" r="16" />
+                  <path d="M24 15v10l7 4" />
+                  <path d="M17 33h14" />
+                </svg>
+              </div>
+              <h3>Доступ 1 месяц</h3>
+              <p class="muted">Пересматривайте и закрепляйте материал после потока.</p>
+            </article>
+
+            <article class="card" data-stagger>
+              <span class="badge inline">Бонус</span>
+              <div class="icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 7h20l6 6v28H14z" />
+                  <path d="M34 7v6h6" />
+                  <path d="m19 27 3 3 7-7" />
+                </svg>
+              </div>
+              <h3>Чек-лист возврата</h3>
+              <p class="muted">Что делать после пропуска, чтобы не откатиться.</p>
+            </article>
+
+            <article class="card" data-stagger>
+              <span class="badge inline">Бонус</span>
+              <div class="icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 12a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4z" />
+                  <path d="M17 16h14M17 22h14M17 28h9" />
+                </svg>
+              </div>
+              <h3>Мини-гайд</h3>
+              <p class="muted">Бытовая активность для поддержания тонуса каждый день.</p>
+            </article>
+          </div>
+
+          <div class="row" style="margin-top: 24px" data-stagger>
+            <a class="btn btn-primary js-pay-scroll js-pay-label" href="#pay-form-section">Оплатить доступ</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container">
+          <header class="section-header" data-stagger>
+            <h2>Как устроена программа</h2>
+          </header>
+          <div class="timeline" data-stagger>
+            <article class="card timeline-item">
+              <span class="badge inline">Дни 1-3</span>
+              <h3>Запуск</h3>
+              <p class="muted">Дыхание, активация глубоких мышц, безопасная база.</p>
+            </article>
+            <article class="card timeline-item">
+              <span class="badge inline">Дни 4-6</span>
+              <h3>Укрепление</h3>
+              <p class="muted">Кор, осанка и функциональные движения.</p>
+            </article>
+            <article class="card timeline-item">
+              <span class="badge inline">Дни 7-8</span>
+              <h3>Тонус</h3>
+              <p class="muted">Прогрессия без перегруза и адаптации под уровень.</p>
+            </article>
+            <article class="card timeline-item">
+              <span class="badge inline">Дни 9-10</span>
+              <h3>Закрепление</h3>
+              <p class="muted">Фиксируем технику и план на 4 недели вперед.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt reveal">
+        <div class="container">
+          <header class="section-header" data-stagger>
+            <h2>Результаты участниц</h2>
+          </header>
+          <div class="cases-track" id="pay-cases-track" data-stagger>
+            <article class="card case-card" data-stagger>
+              <span class="quote-decor" aria-hidden="true">“</span>
+              <span class="badge inline">Офисная работа</span>
+              <blockquote>«К вечеру перестал надуваться живот, а поясница перестала ныть».</blockquote>
+              <footer>34 года · сидячая работа 8+ часов</footer>
+            </article>
+            <article class="card case-card" data-stagger>
+              <span class="quote-decor" aria-hidden="true">“</span>
+              <span class="badge inline">После перерыва</span>
+              <blockquote>«Сделала все 10 дней без срывов. 15 минут в день оказалось реально».</blockquote>
+              <footer>42 года · без тренировок 3 года</footer>
+            </article>
+            <article class="card case-card" data-stagger>
+              <span class="quote-decor" aria-hidden="true">“</span>
+              <span class="badge inline">Удаленный график</span>
+              <blockquote>«Впервые дошла до конца без давления и жестких требований».</blockquote>
+              <footer>38 лет · работа из дома</footer>
+            </article>
+          </div>
+          <div class="case-dots" id="pay-case-dots" aria-hidden="true">
+            <span class="case-dot is-active"></span>
+            <span class="case-dot"></span>
+            <span class="case-dot"></span>
+          </div>
+          <div class="row" style="margin-top: 24px" data-stagger>
+            <a class="btn btn-secondary js-pay-scroll" href="#pay-form-section">Хочу такие же изменения</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container grid two">
+          <article data-stagger>
+            <header class="section-header">
+              <h2>Стоимость и гарантия</h2>
+              <p>
+                Одна персональная тренировка часто стоит от 2 000 ₽. Здесь вы получаете 10 уроков,
+                2 эфира и месяц поддержки по цене от 1 990 ₽.
+              </p>
+            </header>
+
+            <ul class="price-steps" aria-label="Лестница цен">
+              <li class="price-step" data-stage="wave_1">
+                <span class="price-date">10-12 марта 2026</span>
+                <span class="price-amount">1 990 ₽</span>
+              </li>
+              <li class="price-step" data-stage="wave_2">
+                <span class="price-date">13-15 марта 2026</span>
+                <span class="price-amount">2 490 ₽</span>
+              </li>
+              <li class="price-step" data-stage="wave_3">
+                <span class="price-date">16-18 марта 2026</span>
+                <span class="price-amount">2 990 ₽</span>
+              </li>
+              <li class="price-step" data-stage="wave_4">
+                <span class="price-date">19-22 марта 2026</span>
+                <span class="price-amount">3 490 ₽</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card" data-stagger>
+            <h3>Гарантия сопровождения</h3>
+            <p class="muted" style="margin-top: 10px">
+              Если после 3-го дня вы не чувствуете разницу в теле, напишите Ирине. Разберем
+              технику и адаптируем нагрузку под вашу ситуацию.
+            </p>
+            <div class="row" style="margin-top: 24px">
+              <a class="btn btn-primary js-pay-scroll js-pay-label" href="#pay-form-section">Оплатить доступ</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-alt reveal">
+        <div class="container">
+          <header class="section-header center" data-stagger>
+            <h2>Вопросы перед оплатой</h2>
+          </header>
+
+          <div class="faq card" data-stagger>
+            <article class="faq-item is-open">
+              <button class="faq-trigger" type="button" aria-expanded="true" aria-controls="pay-faq-panel-1" id="pay-faq-button-1">
+                <span>Если пропущу день?</span>
+                <svg class="faq-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 4 4-4 4" /></svg>
+              </button>
+              <div class="faq-panel" id="pay-faq-panel-1" role="region" aria-labelledby="pay-faq-button-1">
+                <p>Уроки в записи, доступ месяц. Пропуск не обнуляет результат.</p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="pay-faq-panel-2" id="pay-faq-button-2">
+                <span>Подойдет при болях в спине?</span>
+                <svg class="faq-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 4 4-4 4" /></svg>
+              </button>
+              <div class="faq-panel" id="pay-faq-panel-2" role="region" aria-labelledby="pay-faq-button-2">
+                <p>Формат бережный, но при острых состояниях сначала получите разрешение врача.</p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="pay-faq-panel-3" id="pay-faq-button-3">
+                <span>Нужен инвентарь?</span>
+                <svg class="faq-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 4 4-4 4" /></svg>
+              </button>
+              <div class="faq-panel" id="pay-faq-panel-3" role="region" aria-labelledby="pay-faq-button-3">
+                <p>Нет. Достаточно коврика и свободного места дома.</p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="pay-faq-panel-4" id="pay-faq-button-4">
+                <span>Что если не подойдет формат?</span>
+                <svg class="faq-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 4 4-4 4" /></svg>
+              </button>
+              <div class="faq-panel" id="pay-faq-panel-4" role="region" aria-labelledby="pay-faq-button-4">
+                <p>Напишите Ирине, и мы адаптируем формат под ваш текущий уровень.</p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="pay-faq-panel-5" id="pay-faq-button-5">
+                <span>Как проходит оплата?</span>
+                <svg class="faq-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 4 4-4 4" /></svg>
+              </button>
+              <div class="faq-panel" id="pay-faq-panel-5" role="region" aria-labelledby="pay-faq-button-5">
+                <p>Через безопасный платеж YooKassa, финализация доступа — по подтверждению оплаты.</p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="pay-faq-panel-6" id="pay-faq-button-6">
+                <span>Можно подарить участие?</span>
+                <svg class="faq-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 2 4 4-4 4" /></svg>
+              </button>
+              <div class="faq-panel" id="pay-faq-panel-6" role="region" aria-labelledby="pay-faq-button-6">
+                <p>Да. Напишите в поддержку, и мы поможем оформить участие как подарок.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark reveal" id="pay-form-section">
+        <div class="container grid two">
+          <article data-stagger>
+            <header class="section-header">
+              <h2>Оформить доступ</h2>
+              <p>Оплата через YooKassa · защищённое соединение.</p>
+            </header>
+
+            <p class="kicker" style="color: rgba(250, 247, 242, 0.75)">Текущая цена</p>
+            <div class="price-main dark" data-current-price>—</div>
+
+            <div class="timer-box js-countdown" aria-live="polite" style="margin-top: 16px">
+              <p class="timer-caption">До повышения цены</p>
+              <div class="timer">
+                <div class="timer-item">
+                  <span class="timer-value" data-unit="days">00</span>
+                  <span class="timer-label">дн</span>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-item">
+                  <span class="timer-value" data-unit="hours">00</span>
+                  <span class="timer-label">ч</span>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-item">
+                  <span class="timer-value" data-unit="minutes">00</span>
+                  <span class="timer-label">мин</span>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-item">
+                  <span class="timer-value timer-seconds" data-unit="seconds">00</span>
+                  <span class="timer-label">сек</span>
+                </div>
+              </div>
+              <p class="timer-note js-sales-note">Следующее переключение: —</p>
+            </div>
+
+            <p class="kicker" style="margin-top: 16px; color: rgba(250, 247, 242, 0.75)">
+              Продавец: самозанятый Семьянов Виталий Сергеевич
+            </p>
+          </article>
+
+          <article class="card form-shell" id="payment-form-shell" data-stagger>
+            <form id="payment-form" novalidate>
+              <div class="field">
+                <label class="field-label" for="payer-name">Имя *</label>
+                <input id="payer-name" name="payer-name" type="text" placeholder="Как к вам обращаться" required />
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="payer-phone">Телефон (необязательно)</label>
+                <input id="payer-phone" name="payer-phone" type="tel" placeholder="+7 (___) ___-__-__" />
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="payer-email">Email (необязательно)</label>
+                <input id="payer-email" name="payer-email" type="email" placeholder="name@example.com" />
+              </div>
+
+              <div id="pay-form-error" class="error" role="alert" aria-live="polite"></div>
+              <button id="pay-btn" class="btn btn-primary block js-pay-label" type="submit">Оплатить доступ</button>
+
+              <p class="lock-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="5" y="11" width="14" height="10" rx="2" />
+                  <path d="M8 11V8a4 4 0 1 1 8 0v3" />
+                </svg>
+                Оплата через YooKassa · Защищённое соединение
+              </p>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="container site-foot__inner">
+        <p>Поддержка: <a class="js-support-link" href="https://t.me/ira_deni" target="_blank" rel="noreferrer">t.me/ira_deni</a></p>
+        <p><a href="../privacy/">умныйживот.рф/privacy</a></p>
+        <p>© 2026</p>
+      </div>
+    </footer>
+
+    <div class="sticky-cta" id="sticky-pay-cta">
+      <div class="container">
+        <button class="btn btn-primary block js-pay-label" id="sticky-pay-btn" type="button">Оплатить доступ</button>
+      </div>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script type="module" src="../assets/js/pages/pay.js"></script>
+  </body>
+</html>

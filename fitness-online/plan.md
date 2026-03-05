@@ -702,3 +702,135 @@
 - Не пишем готовые тексты блоков (это задача landing-texts.md)
 - Не правим HTML/CSS/JS
 - Не меняем воронку или оффер
+
+## 2026-03-05 | AGENTS Harness v2 rollout (fitness-online + fitness-online-landing)
+
+### Task ID
+- HARNESS-2026-03-05-02
+
+### Цель
+Расширить AGENTS Harness v2 на `fitness-online` и `fitness-online-landing`, сохранив единый процессный контракт и не затрагивая бизнес-контент/код продукта.
+
+### Acceptance criteria
+- Добавлен локальный `fitness-online/AGENTS.md` с проектными инвариантами.
+- Добавлены `fitness-online-landing/AGENTS.md` и `fitness-online-landing/docs/agent-checklist.md`.
+- Корневой `scripts/harness_check.py` проверяет `fitness-online/AGENTS.md` как обязательный override.
+- Для `fitness-online-landing/AGENTS.md` в корневом check реализован warn-only при отсутствии.
+- Обновлены `AGENTS.md`, `agent-harness/README.md`, `agent-harness/changelog.md`, `Makefile`.
+- Обновлены логи: `fitness-online/log.md`, `fitness-online-landing/log.md`, `darky-dance/log.md`.
+- Проверки `harness-sync-check`, `harness-check-fast`, `harness-check-strict` проходят.
+
+### Пошаговый план
+1. Стабилизировать формулировки в корневом `AGENTS.md` и синхронизировать маркер `[РЕШЕНИЕ ТРЕБУЕТСЯ]`.
+2. Обновить `agent-harness/README.md` (карта локальных AGENTS и nested repo политика).
+3. Обновить `agent-harness/changelog.md` записью rollout.
+4. Создать `fitness-online/AGENTS.md` как локальный override.
+5. Создать `fitness-online-landing/AGENTS.md` и `fitness-online-landing/docs/agent-checklist.md`.
+6. Обновить `scripts/harness_check.py` и `Makefile`.
+7. Прогнать проверки и синхронизацию worktree AGENTS.
+8. Обновить process-записи в `research/plan/log` по проектам.
+
+### Файлы
+- `AGENTS.md`
+- `darky-dance/smm/AGENTS.md`
+- `agent-harness/README.md`
+- `agent-harness/changelog.md`
+- `scripts/harness_check.py`
+- `Makefile`
+- `fitness-online/AGENTS.md` (новый)
+- `fitness-online-landing/AGENTS.md` (новый)
+- `fitness-online-landing/docs/agent-checklist.md` (новый)
+- `fitness-online/log.md`
+- `fitness-online-landing/log.md`
+- `darky-dance/log.md`
+
+### TODO
+- [x] Обновить корневой `AGENTS.md` (стабилизация формулировок)
+- [x] Обновить `darky-dance/smm/AGENTS.md` (маркер `[РЕШЕНИЕ ТРЕБУЕТСЯ]`)
+- [x] Обновить `agent-harness/README.md`
+- [x] Обновить `agent-harness/changelog.md`
+- [x] Создать `fitness-online/AGENTS.md`
+- [x] Создать `fitness-online-landing/AGENTS.md`
+- [x] Создать `fitness-online-landing/docs/agent-checklist.md`
+- [x] Обновить `scripts/harness_check.py`
+- [x] Обновить `Makefile`
+- [x] Прогнать проверки
+- [x] Обновить `fitness-online/log.md`
+- [x] Обновить `fitness-online-landing/log.md`
+- [x] Обновить `darky-dance/log.md`
+
+### Не делаем
+- Не редактируем `site/*` и `workers/*` в `fitness-online-landing`.
+- Не редактируем бизнес-файлы продукта в `fitness-online`.
+- Не добавляем отдельные scripts/hooks/Makefile в nested repo.
+
+### Итог проверки
+- `python3 scripts/harness_sync_agents.py --write` — выполнено, производные AGENTS синхронизированы.
+- `make harness-check-project-agents` — OK.
+- `make harness-sync-check` — OK.
+- `make harness-check-fast` — OK.
+- `make harness-check-strict` — OK (warning: нет staged-файлов, staged-contract checks пропущены).
+
+### Как проверить результат
+1. Открыть `fitness-online/AGENTS.md` и проверить локальные инварианты проекта.
+2. Открыть `fitness-online-landing/AGENTS.md` и `fitness-online-landing/docs/agent-checklist.md`.
+3. Выполнить:
+   - `make harness-check-project-agents`
+   - `make harness-sync-check`
+   - `make harness-check-fast`
+   - `make harness-check-strict`
+
+## 2026-03-05 | Миграция `fitness-online-landing` → `fitness-online/landing`
+
+### Task ID
+- HARNESS-2026-03-05-03
+
+### Цель
+Перевести лендинг из nested git repo в подпроект `fitness-online/landing`, чтобы все изменения коммитились в одном репозитории `ai-brain`.
+
+### Acceptance criteria
+- Папка `fitness-online/landing` содержит весь контур лендинга (`site`, `workers`, `docs`, `README.md`, `AGENTS.md`, `log.md`).
+- Папка `fitness-online-landing` удалена из рабочей директории.
+- Корневой harness валидирует `fitness-online/landing/AGENTS.md` и `fitness-online/landing/docs/agent-checklist.md` как обязательные.
+- В `.gitignore` нет `fitness-online-landing/`; добавлены игноры transient-артефактов по новому пути.
+- Проверки `harness_sync_agents --check`, `harness_check --mode fast|strict` проходят.
+
+### Пошаговый план
+1. Зафиксировать process-записи с `Task ID` в `fitness-online/research.md` и `fitness-online/plan.md`.
+2. Перенести содержимое `fitness-online-landing` в `fitness-online/landing` без `.git` и transient-артефактов.
+3. Удалить старую директорию `fitness-online-landing`.
+4. Обновить корневые process-файлы: `AGENTS.md`, `agent-harness/README.md`, `scripts/harness_check.py`, `.gitignore`.
+5. Обновить локальные process-файлы: `fitness-online/AGENTS.md`, `fitness-online/landing/AGENTS.md`, `fitness-online/landing/docs/agent-checklist.md`, `fitness-online/landing/README.md`.
+6. Добавить migration-записи в `fitness-online/log.md`, `fitness-online/landing/log.md`, `agent-harness/changelog.md`.
+7. Прогнать проверки и зафиксировать итог.
+
+### Файлы
+- `fitness-online/research.md`
+- `fitness-online/plan.md`
+- `fitness-online/log.md`
+- `fitness-online/AGENTS.md`
+- `fitness-online/landing/**`
+- `AGENTS.md`
+- `agent-harness/README.md`
+- `agent-harness/changelog.md`
+- `scripts/harness_check.py`
+- `.gitignore`
+
+### TODO
+- [x] Добавить Task ID секции в process-файлы fitness-online
+- [x] Перенести `fitness-online-landing` → `fitness-online/landing`
+- [x] Удалить legacy-папку `fitness-online-landing`
+- [x] Обновить root AGENTS/harness контракты под новый путь
+- [x] Обновить локальные AGENTS/checklist/README под новый путь
+- [x] Обновить логи и changelog
+- [x] Прогнать `sync/fast/strict` проверки
+
+### Не делаем
+- Не поднимаем/не настраиваем деплой в этом rollout.
+- Не меняем бизнес-контент лендинга и продукта.
+- Не переносим git-историю standalone репозитория.
+
+### Итог проверки
+- `python3 scripts/harness_sync_agents.py --check` — OK (после синхронизации `--write`).
+- `python3 scripts/harness_check.py --mode fast` — OK.
+- `python3 scripts/harness_check.py --mode strict` — OK (warning: staged-contract checks skipped, т.к. нет staged-файлов).
