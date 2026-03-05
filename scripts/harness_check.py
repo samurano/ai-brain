@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate AGENTS Harness v2 invariants."""
+"""Validate AGENTS/CLAUDE Harness v2 invariants."""
 
 from __future__ import annotations
 
@@ -13,9 +13,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_FILES = [
     "AGENTS.md",
+    "CLAUDE.md",
     "darky-dance/smm/AGENTS.md",
+    "darky-dance/smm/CLAUDE.md",
     "fitness-online/AGENTS.md",
+    "fitness-online/CLAUDE.md",
     "fitness-online/landing/AGENTS.md",
+    "fitness-online/landing/CLAUDE.md",
     "fitness-online/landing/docs/agent-checklist.md",
     "agent-harness/README.md",
     "agent-harness/checklist.md",
@@ -34,10 +38,25 @@ ROOT_MARKERS = [
     "python3 scripts/harness_check.py --mode strict",
 ]
 
+ROOT_CLAUDE_MARKERS = [
+    "CLAUDE Harness v2",
+    "Non-mutating vs Mutating",
+    "Task ID",
+    "Канон и локальные CLAUDE",
+    "python3 scripts/harness_check.py --mode strict",
+]
+
 SMM_MARKERS = [
     "AGENTS Harness v2",
     "локальный override",
     "Non-mutating vs Mutating",
+    "Task ID",
+]
+
+LOCAL_CLAUDE_MARKERS = [
+    "CLAUDE Harness v2",
+    "локальный override",
+    "Research → Plan → STOP → GO",
     "Task ID",
 ]
 
@@ -215,9 +234,13 @@ def main() -> int:
 
     validate_required_files(result)
     validate_markers(result, "AGENTS.md", ROOT_MARKERS)
+    validate_markers(result, "CLAUDE.md", ROOT_CLAUDE_MARKERS)
     validate_markers(result, "darky-dance/smm/AGENTS.md", SMM_MARKERS)
+    validate_markers(result, "darky-dance/smm/CLAUDE.md", LOCAL_CLAUDE_MARKERS)
     validate_markers(result, "fitness-online/AGENTS.md", FITNESS_ONLINE_MARKERS)
+    validate_markers(result, "fitness-online/CLAUDE.md", LOCAL_CLAUDE_MARKERS)
     validate_markers(result, "fitness-online/landing/AGENTS.md", FITNESS_LANDING_MARKERS)
+    validate_markers(result, "fitness-online/landing/CLAUDE.md", LOCAL_CLAUDE_MARKERS)
     validate_derived_sync(result)
 
     if args.mode == "strict":

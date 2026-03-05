@@ -55,3 +55,33 @@
 - `python3 scripts/harness_sync_agents.py --check`
 - `python3 scripts/harness_check.py --mode fast`
 - `python3 scripts/harness_check.py --mode strict`
+
+## 2026-03-05 | HARNESS-2026-03-05-04
+### Task ID
+- HARNESS-2026-03-05-04
+
+### Что сделано
+- Выполнен parity `CLAUDE.md` c текущим AGENTS-контуром по новой структуре.
+- Обновлён корневой `CLAUDE.md` до `CLAUDE Harness v2` с контрактами:
+  - `Research → Plan → STOP → GO`
+  - `Non-mutating vs Mutating`
+  - `Task ID`
+  - приоритет локальных override.
+- Обновлён `darky-dance/smm/CLAUDE.md` и добавлен локальный v2-блок.
+- Добавлены новые локальные файлы:
+  - `fitness-online/CLAUDE.md`
+  - `fitness-online/landing/CLAUDE.md`
+- Расширен `scripts/harness_check.py`:
+  - валидация обязательных CLAUDE-файлов,
+  - проверка ключевых маркеров root/local CLAUDE,
+  - проверка AGENTS/CLAUDE в едином fast/strict pipeline.
+- Обновлены `Makefile`, `agent-harness/README.md`, `agent-harness/checklist.md` под AGENTS/CLAUDE parity.
+
+### Политика sync
+- Sync остаётся AGENTS-only через `scripts/harness_sync_agents.py`.
+- Для `CLAUDE.md` derived-sync в `.claude/worktrees/*` не вводился.
+
+### Итог проверки
+- `python3 scripts/harness_check.py --mode fast`
+- `python3 scripts/harness_check.py --mode strict`
+- `python3 scripts/harness_sync_agents.py --check`

@@ -1,10 +1,13 @@
-.PHONY: harness-check-fast harness-check-strict harness-check-project-agents harness-sync-check harness-sync-write harness-hook-install harness-hook-uninstall
+.PHONY: harness-check-fast harness-check-strict harness-check-claude harness-check-project-agents harness-sync-check harness-sync-write harness-hook-install harness-hook-uninstall
 
 harness-check-fast:
 	python3 scripts/harness_check.py --mode fast
 
 harness-check-strict:
 	python3 scripts/harness_check.py --mode strict
+
+harness-check-claude:
+	python3 scripts/harness_check.py --mode fast
 
 harness-check-project-agents:
 	python3 scripts/harness_check.py --mode fast
