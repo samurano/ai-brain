@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оплата подтверждена</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-head" id="site-head">
+      <div class="container site-head__inner">
+        <a class="brand" href="../../">умный живот</a>
+        <a class="top-link js-support-link" href="https://t.me/ira_deni" target="_blank" rel="noreferrer"
+          >Поддержка</a
+        >
+      </div>
+    </header>
+
+    <main class="single-center">
+      <div class="container">
+        <article class="card single-card text-center">
+          <div class="success-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m8.5 12.5 2.4 2.4 4.6-5" />
+            </svg>
+          </div>
+
+          <h1 style="font-size: clamp(28px, 5vw, 40px)">Оплата прошла успешно!</h1>
+          <p class="muted" style="margin-top: 12px">Следующий шаг: вступите в закрытый чат программы.</p>
+
+          <p id="payment-meta" class="kicker" style="margin-top: 10px">Платеж: —</p>
+
+          <div class="row" style="justify-content: center; margin-top: 22px">
+            <a id="join-private-chat-btn" class="btn btn-primary" href="#" target="_blank" rel="noreferrer"
+              >Вступить в закрытый чат</a
+            >
+            <a class="btn btn-secondary" href="../../pay/">Вернуться на страницу оплаты</a>
+          </div>
+
+          <p class="kicker" style="margin-top: 16px">
+            Если есть вопросы, напишите в
+            <a class="js-support-link" href="https://t.me/ira_deni" target="_blank" rel="noreferrer">поддержку</a>
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <script src="../../assets/js/config.js"></script>
+    <script type="module" src="../../assets/js/pages/success.js"></script>
+  </body>
+</html>

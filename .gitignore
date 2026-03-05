@@ -1,4 +1,10 @@
 .DS_Store
-fitness-online-landing/
 .claude/worktrees/
 temp/
+fitness-online/landing/.playwright-cli/
+fitness-online/landing/output/
+fitness-online/landing/workers/.wrangler/
+
+# VK Ads raw exports are transient input files (keep only README tracked)
+darky-dance/marketing/vk-ads/data/*
+!darky-dance/marketing/vk-ads/data/README.md

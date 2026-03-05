@@ -292,3 +292,34 @@
 - Добавлены 7 открытых вопросов (видеоформат, платформа эфиров, хранение уроков и др.).
 - Все даты — относительные (триггеры), без привязки к конкретным числам.
 - Обращение: последовательно «вы». Тон: голос Ирины. Канал: только Telegram, без email/SMS.
+
+## 2026-03-05 (AGENTS Harness v2 rollout для fitness-online)
+
+### Task ID
+- HARNESS-2026-03-05-02
+
+### Что сделано
+- Добавлен локальный override-файл `fitness-online/AGENTS.md`.
+- Зафиксированы проектные инварианты:
+  - обязательный порядок чтения контекста,
+  - `Research → Plan → STOP → GO`,
+  - `non-mutating` до `GO`,
+  - контракт `Task ID` для `research.md`, `plan.md`, `log.md`,
+  - запрет на противоречие `decisions.md` по ценам/датам/продуктовым ограничениям.
+- В корневом harness обновлены проверки под новый локальный AGENTS.
+
+### Что проверить
+1. `fitness-online/AGENTS.md` существует и содержит блок `AGENTS Harness v2 (локальный override)`.
+2. В новых задачах по проекту `Task ID` фиксируется во всех трёх файлах: `research.md`, `plan.md`, `log.md`.
+3. Корневая проверка `make harness-check-fast` проходит без ошибок.
+
+## 2026-03-05 | HARNESS-2026-03-05-03
+- Task ID: HARNESS-2026-03-05-03
+- Что сделано:
+  - выполнена миграция лендинга из `fitness-online-landing` в `fitness-online/landing`;
+  - обновлены process-контракты (`AGENTS.md`, `agent-harness/README.md`, `scripts/harness_check.py`, `.gitignore`);
+  - локальный override для кодового контура зафиксирован в `fitness-online/landing/AGENTS.md`.
+- Что проверить:
+  - все новые задачи по лендингу ведутся через `fitness-online/landing/docs/research.md` и `fitness-online/landing/docs/plan.md`;
+  - корневые harness-проверки `fast/strict/sync` проходят;
+  - деплой не изменялся в рамках этой миграции (отдельный follow-up).

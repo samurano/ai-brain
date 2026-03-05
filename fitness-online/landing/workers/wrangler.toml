@@ -1,0 +1,13 @@
+name = "fitness-online-landing-api"
+main = "src/index.js"
+compatibility_date = "2026-02-28"
+workers_dev = true
+
+[vars]
+APP_ENV = "production"
+SITE_BASE_URL = "https://samurano.github.io/fitness-online-landing"
+
+# Опционально, если хотите KV для дедупликации вебхуков.
+# [[kv_namespaces]]
+# binding = "PAYMENT_DEDUP_KV"
+# id = "<KV_NAMESPACE_ID>"
