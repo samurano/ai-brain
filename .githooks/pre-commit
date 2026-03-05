@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eu
+
+python3 scripts/harness_check.py --mode strict
+python3 scripts/harness_sync_agents.py --check
