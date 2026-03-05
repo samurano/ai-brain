@@ -109,3 +109,82 @@
   - `lp_view`, `lp_hero_cta_click`, `lp_form_start`, `lp_form_submit`, `lp_form_success`, `lp_form_error`, `lp_telegram_click`, `lp_thanks_view`.
 - Добавлен baseline под Cloudflare Worker (`workers/`) для будущего боевого endpoint-а.
 - Этап 5 (финальный дизайн) не начат.
+
+## 2026-03-04 (лендинг D’Arky — этап 5: prompt pack первого экрана)
+- Выполнена дизайн-подготовка этапа 5 в формате prompt pack для Nano Banana Pro.
+- Создан файл: `darky-dance/marketing/landing-hero-prompts.md`.
+- В файле зафиксированы 3 детальных raw-промта под desktop 16:9:
+  - `Core A` — split conversion
+  - `Core B` — cinematic + floating mini-form
+  - `Experimental C` — quiet luxury editorial.
+- Зафиксированы единые требования для всех вариантов:
+  - логотип D’Arky как reference image без перерисовки
+  - H1/subhead/3 буллета/CTA/mini-form/consent/microtrust
+  - язык интерфейса русский, тон без давления.
+- Зафиксировано текущее ограничение итерации:
+  - `single master frame` (без отдельных VK/Direct визуалов).
+- Подготовлен набор тест-кейсов для проверки качества генерации и кодо-пригодности макета.
+
+## 2026-03-04 (лендинг D’Arky — этап 5: итерация по Core B)
+- Получен фидбэк: из исходных 3 вариантов ближе всего `Prompt 2 — Core B`.
+- На базе `Core B` добавлены 2 новых raw-промта в `marketing/landing-hero-prompts.md`:
+  - `Prompt 4 — Core B Alt 1 (Closer Hero, anchored floating form)`
+  - `Prompt 5 — Core B Alt 2 (Wider action scene, central overlap form)`.
+- В обоих сохранены:
+  - формат desktop 16:9
+  - core-эстетика D’Arky
+  - конверсионный каркас hero (H1, subhead, 3 буллета, CTA, mini-form, consent, microtrust).
+- Следующий шаг: сгенерировать рендеры этих 2 вариантов и выбрать один для кодовой реализации hero.
+
+## 2026-03-04 (лендинг D’Arky — этап 5.1: реализация hero в коде)
+- Реализован новый `BLK-01` по выбранному референсу `hero_promt_2_v1`.
+- Обновлена композиция первого экрана:
+  - левый контентный блок с UTM-вариативными текстами (`HeroVariant`)
+  - central floating mini-form
+  - правый visual block с парой и neon-слоями.
+- Интегрирована mini-form в hero без дублирования бизнес-логики:
+  - `LeadForm` переведён в режимы `compact/full`
+  - единая валидация `zod`, единый submit-layer, единая аналитика.
+- Сохранён BLK-09 как повторный блок формы:
+  - подключён `LeadForm mode=\"full\"`
+  - отдельный `formId`, чтобы не конфликтовать с hero form.
+- Подготовлены ассеты для hero в `site/public`:
+  - `public/brand/logo-darky.png`
+  - `public/hero/hero-couple.jpg`.
+- Добавлен hero-специфичный CSS (desktop + mobile) в `src/styles/global.css`.
+- Проверки пройдены успешно:
+  - `npm run check`
+  - `npm run build`
+  - `npm run build-storybook`.
+
+## 2026-03-04 (лендинг D’Arky — этап 5.1: корректировка верстки после визуального фидбэка)
+- После первого просмотра внесена точечная корректировка hero-композиции (слишком длинный copy и конфликт с floating form).
+- Обновлены hero-тексты в `src/content/landing.ts` для render-safe компоновки:
+  - сокращены `h1/subhead/bullets` в обеих UTM-ветках,
+  - сохранена UTM-вариативность, но без перегруза левой колонки.
+- Подправлена геометрия hero в `src/styles/global.css`:
+  - уменьшен масштаб типографики,
+  - сдвинута и ужата floating mini-form,
+  - улучшены пропорции десктопной композиции.
+- Проверки после коррекции снова зелёные:
+  - `npm run check`
+  - `npm run build`
+  - `npm run build-storybook`.
+
+## 2026-03-05 (VK Ads — создана полная система управления рекламными кампаниями)
+- Создан новый контур: `darky-dance/marketing/vk-ads/`.
+- Добавлены и заполнены документы управления:
+  - `vk-ads/strategy.md` — операционная стратегия (цели, бюджеты, ставки, пороги, cadence).
+  - `vk-ads/audiences.md` — каталог аудиторий с ID `A01...A12` и волнами тестирования.
+  - `vk-ads/creatives.md` — тексты `C01...C24` + ТЗ на визуалы + единый stop-list.
+  - `vk-ads/tests-log.md` — шаблон ведения тестов (append-only, карточки, статусы решений).
+  - `vk-ads/analysis.md` — шаблон еженедельной аналитики + baseline-факты для старта.
+  - `vk-ads/recommendations.md` — action-list с привязкой к фактам (`ANL-Bxx`/тесты).
+  - `vk-ads/data/README.md` — регламент экспорта/нейминга/загрузки данных.
+  - `vk-ads/log.md` — локальный лог направления.
+- Зафиксированы стартовые параметры цикла:
+  - базовый CPL: `1500 ₽`
+  - целевой CPL на 6–8 недель: `900–1100 ₽`
+  - тестовый бюджет: `25–30 тыс ₽/мес`
+  - целевой CAC: `<=3500 ₽`, потолок `4500 ₽`
+- Принят порядок тестирования: аудитории -> тексты -> визуал -> плейсменты.
